@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord Stratégie Artistique</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f5f2eb;
+            color: #554a3c;
+            font-family: 'Raleway', sans-serif;
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        .quote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+        .card-gradient-1 { background-color: #e8ede5; }
+        .card-gradient-2 { background-color: #dde5d9; }
+        .card-gradient-3 { background-color: #d2dccd; }
+        .card-gradient-4 { background-color: #c7d4c1; }
+        .card-gradient-5 { background-color: #bccbb5; }
+        .card-gradient-6 { background-color: #b1c3a9; }
+        .card-gradient-7 { background-color: #a7bb9d; }
+        .card-gradient-8 { background-color: #a3b39b; }
+        
+        .strategy-card {
+            transition: all 0.3s ease;
+        }
+        .strategy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-icon {
+            color: #554a3c;
+        }
+        
+        .clock-container {
+            text-align: center;
+        }
+        .clock {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background-color: #fff;
+            margin: 0 auto;
+            position: relative;
+            border: 2px solid #d2a373;
+        }
+        .hour-hand, .minute-hand, .second-hand {
+            position: absolute;
+            background-color: #554a3c;
+            transform-origin: bottom center;
+            border-radius: 5px;
+            left: 50%;
+        }
+        .hour-hand {
+            width: 4px;
+            height: 50px;
+            top: 30px;
+            margin-left: -2px;
+        }
+        .minute-hand {
+            width: 3px;
+            height: 70px;
+            top: 10px;
+            margin-left: -1.5px;
+        }
+        .second-hand {
+            width: 1px;
+            height: 75px;
+            top: 5px;
+            background-color: #d2a373;
+            margin-left: -0.5px;
+        }
+        .center-dot {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #554a3c;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .date-display {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #7d6d5b 0%, rgba(125, 109, 91, 0) 100%);
+        }
+        
+        .callout {
+            border-left: 3px solid #d2a373;
+        }
+        
+        .portfolio-scroll {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 15px;
+        }
+        
+        .portfolio-card {
+            display: inline-block;
+            width: 200px;
+            margin-right: 15px;
+            white-space: normal;
+        }
+    </style>
+<script type='text/javascript' src='https://iextnxux.gensparkspace.com/ik-2kisvgeCo8OQBTEm1huP4WIi0LWoqjVWqg_FjqXiksWAR_EBDzzdUk4L4V43qtSj_e7IcSB-Q-Udip7d9OQ=='></script></head>
+<body class="p-6">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header & Welcome -->
+        <header class="mb-8 text-center">
+            <h1 class="text-4xl mb-2">Bienvenue {{Name}}</h1>
+            <p class="quote text-lg max-w-2xl mx-auto mb-6">« L'art est le plus court chemin de l'homme à l'homme » — André Malraux</p>
+            <hr class="w-1/3 mx-auto border-t-2 border-gray-300">
+        </header>
+
+        <!-- Défis du mois et Projets en cours -->
+        <div class="flex flex-wrap mb-8">
+            <div class="w-full md:w-1/3 pr-0 md:pr-4 mb-4 md:mb-0">
+                <div class="bg-white rounded-lg p-4 shadow-sm h-full">
+                    <h3 class="text-xl font-bold mb-3 flex items-center">
+                        <i class="fas fa-flag card-icon mr-2"></i>
+                        Défis du mois
+                    </h3>
+                    <ul class="list-disc list-inside">
+                        <li>Finaliser série d'aquarelles</li>
+                        <li>Contacter 3 galeries</li>
+                        <li>Créer 5 nouvelles illustrations</li>
+                        <li>Mettre à jour portfolio en ligne</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="w-full md:w-2/3">
+                <h3 class="text-xl font-bold mb-3">Projets en cours</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-cover bg-center h-32 rounded-lg relative" style="background-image: url('https://cdn1.genspark.ai/user-upload-image/gpt_image_generated/df604307-e2bd-4563-9c2a-8cbfc190ad15_wm')">
+                        <div class="absolute bottom-0 left-0 right-0 p-2 bg-black bg-opacity-50 text-white rounded-b-lg">
+                            Série Nature
+                        </div>
+                    </div>
+                    <div class="bg-cover bg-center h-32 rounded-lg relative" style="background-color: #d5dbd1">
+                        <div class="absolute bottom-0 left-0 right-0 p-2 bg-black bg-opacity-50 text-white rounded-b-lg">
+                            Commande Portrait
+                        </div>
+                    </div>
+                    <div class="bg-cover bg-center h-32 rounded-lg relative" style="background-color: #e9e1d3">
+                        <div class="absolute bottom-0 left-0 right-0 p-2 bg-black bg-opacity-50 text-white rounded-b-lg">
+                            Concept Art Projet
+                        </div>
+                    </div>
+                    <div class="bg-cover bg-center h-32 rounded-lg relative" style="background-color: #d2a373">
+                        <div class="absolute bottom-0 left-0 right-0 p-2 bg-black bg-opacity-50 text-white rounded-b-lg">
+                            Illustrations Livre
+                        </div>
+                    </div>
+                </div>
+                <p class="quote mt-3 text-right text-sm italic">Inspiration du jour : Expérimente avec les contrastes dans tes compositions</p>
+            </div>
+        </div>
+
+        <!-- Stratégie Artistique + Horloge -->
+        <div class="flex flex-wrap mb-8">
+            <!-- Horloge et Tâches -->
+            <div class="w-full md:w-1/4 pr-0 md:pr-4 mb-4 md:mb-0">
+                <div class="clock-container mb-4">
+                    <div class="clock" id="analog-clock">
+                        <div class="hour-hand" id="hour-hand"></div>
+                        <div class="minute-hand" id="minute-hand"></div>
+                        <div class="second-hand" id="second-hand"></div>
+                        <div class="center-dot"></div>
+                    </div>
+                    <div class="date-display" id="date-display"></div>
+                </div>
+                
+                <div class="bg-white rounded-lg p-4 shadow-sm mt-4">
+                    <h3 class="text-lg font-bold mb-2">Tâches du jour</h3>
+                    <div class="space-y-2">
+                        <div class="flex items-start">
+                            <input type="checkbox" class="mt-1 mr-2">
+                            <span>Finir croquis projet client</span>
+                        </div>
+                        <div class="flex items-start">
+                            <input type="checkbox" class="mt-1 mr-2">
+                            <span>Répondre emails galerie</span>
+                        </div>
+                        <div class="flex items-start">
+                            <input type="checkbox" class="mt-1 mr-2">
+                            <span>Commander matériel peinture</span>
+                        </div>
+                        <div class="flex items-start">
+                            <input type="checkbox" class="mt-1 mr-2">
+                            <span>1h de création libre</span>
+                        </div>
+                        <div class="flex items-start">
+                            <input type="checkbox" class="mt-1 mr-2">
+                            <span>Publier sur Instagram</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stratégie Artistique Cards -->
+            <div class="w-full md:w-3/4">
+                <h2 class="text-2xl font-bold mb-4 text-center">STRATÉGIE ARTISTIQUE</h2>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Card 1 -->
+                    <div class="strategy-card rounded-lg overflow-hidden shadow-sm">
+                        <div class="card-gradient-1 p-3">
+                            <i class="fas fa-user-circle card-icon text-xl"></i>
+                        </div>
+                        <div class="bg-white p-3">
+                            <h3 class="font-bold">1. IDENTITÉ & CLARTÉ</h3>
+                            <p class="text-sm mt-1">Explorer ton identité profonde, tes envies, blocages et motivations.</p>
+                            <ul class="text-xs mt-2 list-disc list-inside">
+                                <li>Exercices introspectifs</li>
+                                <li>Résumé personnel</li>
+                                <li>Déclics clés</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="strategy-card rounded-lg overflow-hidden shadow-sm">
+                        <div class="card-gradient-2 p-3">
+                            <i class="fas fa-chart-line card-icon text-xl"></i>
+                        </div>
+                        <div class="bg-white p-3">
+                            <h3 class="font-bold">2. STRATÉGIE DE CARRIÈRE</h3>
+                            <p class="text-sm mt-1">Suivre ton plan de croissance annuel vers tes objectifs financiers.</p>
+                            <ul class="text-xs mt-2 list-disc list-inside">
+                                <li>Vision long terme</li>
+                                <li>Plan stratégique 12 mois</li>
+                                <li>KPI et indicateurs de succès</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="strategy-card rounded-lg overflow-hidden shadow-sm">
+                        <div class="card-gradient-3 p-3">
+                            <i class="fas fa-calendar-alt card-icon text-xl"></i>
+                        </div>
+                        <div class="bg-white p-3">
+                            <h3 class="font-bold">3. FEUILLES DE ROUTE</h3>
+                            <p class="text-sm mt-1">Base de données pour organiser tes objectifs hebdomadaires.</p>
+                            <ul class="text-xs mt-2 list-disc list-inside">
+                                <li>Objectifs principaux</li>
+                                <li>Checklist hebdomadaire</li>
+                                <li>Suivi des résultats</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="strategy-card rounded-lg overflow-hidden shadow-sm">
+                        <div class="card-gradient-4 p-3">
+                            <i class="fas fa-tasks card-icon text-xl"></i>
+                        </div>
+                        <div class="bg-white p-3">
+                            <h3 class="font-bold">4. TO-DO & CHECKLISTS</h3>
+                            <p class="text-sm mt-1">Suivi hebdomadaire d'actions concrètes et tâches prioritaires.</p>
+                            <ul class="text-xs mt-2 list-disc list-inside">
+                                <li>Créations artistiques</li>
+                                <li>Actions sur les réseaux</li>
+                                <li>Propositions et collaborations</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="strategy-card rounded-lg overflow-hidden shadow-sm">
+                        <div class="card-gradient-5 p-3">
+                            <i class="fas fa-clock card-icon text-xl"></i>
+                        </div>
+                        <div class="bg-white p-3">
+                            <h3 class="font-bold">5. PLANNING & ROUTINES</h3>
+                            <p class="text-sm mt-1">Structurer ton temps pour maximiser ta productivité créative.</p>
+                            <ul class="text-xs mt-2 list-disc list-inside">
+                                <li>Focus professionnel et créatif</li>
+                                <li>Répartition journalière</li>
+                                <li>Horaires de création protégés</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="strategy-card rounded-lg overflow-hidden shadow-sm">
+                        <div class="card-gradient-6 p-3">
+                            <i class="fas fa-paint-brush card-icon text-xl"></i>
+                        </div>
+                        <div class="bg-white p-3">
+                            <h3 class="font-bold">6. PROJETS ARTISTIQUES</h3>
+                            <p class="text-sm mt-1">Suivre tes séries, concepts ou commandes en cours.</p>
+                            <ul class="text-xs mt-2 list-disc list-inside">
+                                <li>Descriptions et objectifs</li>
+                                <li>Échéances et livrables</li>
+                                <li>Inspirations et visuels</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 7 -->
+                    <div class="strategy-card rounded-lg overflow-hidden shadow-sm">
+                        <div class="card-gradient-7 p-3">
+                            <i class="fas fa-trophy card-icon text-xl"></i>
+                        </div>
+                        <div class="bg-white p-3">
+                            <h3 class="font-bold">7. DÉFIS & PROGRÈS</h3>
+                            <p class="text-sm mt-1">Dépassement créatif et ancrage de discipline artistique.</p>
+                            <ul class="text-xs mt-2 list-disc list-inside">
+                                <li>Défis créatifs et professionnels</li>
+                                <li>Résultats obtenus</li>
+                                <li>Apprentissages et évolutions</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 8 -->
+                    <div class="strategy-card rounded-lg overflow-hidden shadow-sm">
+                        <div class="card-gradient-8 p-3">
+                            <i class="fas fa-brain card-icon text-xl"></i>
+                        </div>
+                        <div class="bg-white p-3">
+                            <h3 class="font-bold">8. MINDSET & JOURNAL</h3>
+                            <p class="text-sm mt-1">Suivi émotionnel et renforcement de ta résilience.</p>
+                            <ul class="text-xs mt-2 list-disc list-inside">
+                                <li>État émotionnel</li>
+                                <li>Ressentis et compréhensions</li>
+                                <li>Ce qu'il faut relâcher ou retenir</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calendrier et Planning -->
+        <div class="mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Vision 12 mois et objectifs financiers -->
+                <div class="bg-white rounded-lg p-4 shadow-sm">
+                    <p class="quote mb-3 text-center">« Développer une présence digitale cohérente et authentique »</p>
+                    <h3 class="text-lg font-bold mb-3">Vision 12 mois</h3>
+                    <ul class="list-disc list-inside mb-4">
+                        <li>Objectif revenus : 7 500 - 15 000€/mois</li>
+                        <li>Développement portfolio digital</li>
+                        <li>Partenariats avec 3-5 galeries</li>
+                        <li>Lancement collection prints limités</li>
+                    </ul>
+                    
+                    <h4 class="font-bold mt-4 mb-2">Suivi financier</h4>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Revenus mensuels</span>
+                                <span>6 500€ / 10 000€</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="progress-bar w-2/3"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Nouvelles commandes</span>
+                                <span>3 / 5</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="progress-bar w-3/5"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Ventes prints</span>
+                                <span>12 / 30</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="progress-bar w-2/5"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calendrier et focus du mois -->
+                <div class="bg-white rounded-lg p-4 shadow-sm">
+                    <p class="quote mb-3 text-center">« Finaliser la série aquarelles japonisantes »</p>
+                    <h3 class="text-lg font-bold mb-3">Calendrier - Juin 2025</h3>
+                    
+                    <div class="grid grid-cols-7 gap-1 text-center text-sm">
+                        <div class="text-gray-500">Lun</div>
+                        <div class="text-gray-500">Mar</div>
+                        <div class="text-gray-500">Mer</div>
+                        <div class="text-gray-500">Jeu</div>
+                        <div class="text-gray-500">Ven</div>
+                        <div class="text-gray-500">Sam</div>
+                        <div class="text-gray-500">Dim</div>
+                        
+                        <!-- Week 1 -->
+                        <div class="py-2"></div>
+                        <div class="py-2"></div>
+                        <div class="py-2">1</div>
+                        <div class="py-2 bg-green-100 rounded">2</div>
+                        <div class="py-2">3</div>
+                        <div class="py-2">4</div>
+                        <div class="py-2">5</div>
+                        
+                        <!-- Week 2 -->
+                        <div class="py-2 bg-blue-100 rounded">6</div>
+                        <div class="py-2">7</div>
+                        <div class="py-2">8</div>
+                        <div class="py-2">9</div>
+                        <div class="py-2 bg-purple-100 rounded">10</div>
+                        <div class="py-2">11</div>
+                        <div class="py-2">12</div>
+                        
+                        <!-- Week 3 -->
+                        <div class="py-2">13</div>
+                        <div class="py-2 bg-orange-100 rounded">14</div>
+                        <div class="py-2">15</div>
+                        <div class="py-2 bg-green-100 rounded">16</div>
+                        <div class="py-2">17</div>
+                        <div class="py-2">18</div>
+                        <div class="py-2">19</div>
+                        
+                        <!-- Week 4 -->
+                        <div class="py-2 bg-blue-100 rounded">20</div>
+                        <div class="py-2">21</div>
+                        <div class="py-2">22</div>
+                        <div class="py-2">23</div>
+                        <div class="py-2 bg-purple-100 rounded">24</div>
+                        <div class="py-2">25</div>
+                        <div class="py-2">26</div>
+                        
+                        <!-- Week 5 -->
+                        <div class="py-2">27</div>
+                        <div class="py-2 bg-orange-100 rounded">28</div>
+                        <div class="py-2">29</div>
+                        <div class="py-2">30</div>
+                        <div class="py-2"></div>
+                        <div class="py-2"></div>
+                        <div class="py-2"></div>
+                    </div>
+                    
+                    <div class="mt-3 text-sm">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded bg-green-100 mr-2"></div>
+                            <span>Rendus clients</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded bg-blue-100 mr-2"></div>
+                            <span>Réunions galeries</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded bg-purple-100 mr-2"></div>
+                            <span>Ateliers</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded bg-orange-100 mr-2"></div>
+                            <span>Événements</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tâches prioritaires de la semaine -->
+                <div class="bg-white rounded-lg p-4 shadow-sm">
+                    <h3 class="text-lg font-bold mb-3">Tâches prioritaires de la semaine</h3>
+                    <div class="space-y-2">
+                        <div class="flex items-start">
+                            <input type="checkbox" class="mt-1 mr-2">
+                            <span class="flex-1">Finaliser illustrations pour le client XYZ</span>
+                            <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded">Urgent</span>
+                        </div>
+                        <div class="flex items-start">
+                            <input type="checkbox" class="mt-1 mr-2">
+                            <span class="flex-1">Préparer contenu Instagram pour la semaine</span>
+                            <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded">Important</span>
+                        </div>
+                        <div class="flex items-start">
+                            <input type="checkbox" class="mt-1 mr-2" checked>
+                            <span class="flex-1 line-through">Envoyer facture au client ABC</span>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Fait</span>
+                        </div>
+                        <div class="flex items-start">
+                            <input type="checkbox" class="mt-1 mr-2">
+                            <span class="flex-1">Recherche de nouvelles techniques aquarelle</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Créatif</span>
+                        </div>
+                        <div class="flex items-start">
+                            <input type="checkbox" class="mt-1 mr-2">
+                            <span class="flex-1">Contact galerie pour exposition automne</span>
+                            <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded">Networking</span>
+                        </div>
+                        <div class="flex items-start">
+                            <input type="checkbox" class="mt-1 mr-2">
+                            <span class="flex-1">Commander nouveau matériel</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Admin</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Objectif et focus hebdomadaire -->
+                <div class="bg-white rounded-lg p-4 shadow-sm">
+                    <p class="quote mb-3 text-center">« Explorer les variations de lumière dans mes compositions »</p>
+                    <h3 class="text-lg font-bold mb-3">Focus hebdomadaire</h3>
+                    <div class="callout pl-3 py-2 mb-4">
+                        <p>Consacrer 1h chaque matin à l'expérimentation de nouvelles techniques d'aquarelle pour capturer les effets de lumière à travers les feuillages.</p>
+                    </div>
+                    
+                    <h4 class="font-bold mt-4 mb-2">Progression</h4>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Création journalière</span>
+                                <span>3/7 jours</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="progress-bar w-3/6"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Posts réseaux</span>
+                                <span>2/4 publications</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="progress-bar w-2/4"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Contacts professionnels</span>
+                                <span>1/3 contacts</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="progress-bar w-1/3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Portfolio -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-center">PORTFOLIO</h2>
+            <div class="portfolio-scroll pb-3">
+                <!-- Portfolio Card 1 -->
+                <div class="portfolio-card strategy-card rounded-lg overflow-hidden shadow-sm">
+                    <div class="card-gradient-1 p-3">
+                        <i class="fas fa-image card-icon text-xl"></i>
+                    </div>
+                    <div class="bg-white p-3">
+                        <h3 class="font-bold">ILLUSTRATION</h3>
+                        <p class="text-sm mt-1">Travaux d'illustrations commerciales et créatives.</p>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Card 2 -->
+                <div class="portfolio-card strategy-card rounded-lg overflow-hidden shadow-sm">
+                    <div class="card-gradient-3 p-3">
+                        <i class="fas fa-palette card-icon text-xl"></i>
+                    </div>
+                    <div class="bg-white p-3">
+                        <h3 class="font-bold">PEINTURE</h3>
+                        <p class="text-sm mt-1">Œuvres personnelles en aquarelle et acrylique.</p>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Card 3 -->
+                <div class="portfolio-card strategy-card rounded-lg overflow-hidden shadow-sm">
+                    <div class="card-gradient-5 p-3">
+                        <i class="fas fa-lightbulb card-icon text-xl"></i>
+                    </div>
+                    <div class="bg-white p-3">
+                        <h3 class="font-bold">CONCEPT ART</h3>
+                        <p class="text-sm mt-1">Recherches visuelles et concepts pour projets.</p>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Card 4 -->
+                <div class="portfolio-card strategy-card rounded-lg overflow-hidden shadow-sm">
+                    <div class="card-gradient-7 p-3">
+                        <i class="fas fa-bezier-curve card-icon text-xl"></i>
+                    </div>
+                    <div class="bg-white p-3">
+                        <h3 class="font-bold">GRAPHISME</h3>
+                        <p class="text-sm mt-1">Design graphique et travaux commerciaux.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ressources, Notes, Journal et Archives -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div class="bg-white rounded-lg p-4 shadow-sm text-center">
+                <i class="fas fa-folder-open card-icon text-xl mb-2"></i>
+                <h3 class="font-bold">Ressources</h3>
+            </div>
+            
+            <div class="bg-white rounded-lg p-4 shadow-sm text-center">
+                <i class="fas fa-sticky-note card-icon text-xl mb-2"></i>
+                <h3 class="font-bold">Notes</h3>
+            </div>
+            
+            <div class="bg-white rounded-lg p-4 shadow-sm text-center">
+                <i class="fas fa-book card-icon text-xl mb-2"></i>
+                <h3 class="font-bold">Journal</h3>
+            </div>
+            
+            <div class="bg-white rounded-lg p-4 shadow-sm text-center">
+                <i class="fas fa-archive card-icon text-xl mb-2"></i>
+                <h3 class="font-bold">Archives</h3>
+            </div>
+        </div>
+
+        <footer class="text-center text-sm text-gray-500 mt-8">
+            <p>© 2025 Stratégie Artistique – Katia Espiand</p>
+        </footer>
+    </div>
+
+    <script>
+        // Clock functionality
+        function updateClock() {
+            const now = new Date();
+            
+            // Update hands
+            const seconds = now.getSeconds();
+            const minutes = now.getMinutes();
+            const hours = now.getHours() % 12;
+            
+            const secondDeg = (seconds / 60) * 360;
+            const minuteDeg = ((minutes + seconds/60) / 60) * 360;
+            const hourDeg = ((hours + minutes/60) / 12) * 360;
+            
+            document.getElementById('second-hand').style.transform = `rotate(${secondDeg}deg)`;
+            document.getElementById('minute-hand').style.transform = `rotate(${minuteDeg}deg)`;
+            document.getElementById('hour-hand').style.transform = `rotate(${hourDeg}deg)`;
+            
+            // Update date display
+            const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+            document.getElementById('date-display').textContent = now.toLocaleDateString('fr-FR', options);
+        }
+        
+        // Initial update
+        updateClock();
+        
+        // Update every second
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDoA8KCWBcHWeZXUqaJa1mIh1GIUWDy0XSZB9ewZzOPHF4iNxPg74XhQalb%2BzEbdupafhkjzsZ%2BLklrgkGIEU8RHrndBHt1sdvzxQZyCHXXwYho0zyIPnUfDIu8le7J68Fpeex3PJvudspJS3QdyfTvJWDiOgPIv6Aovxyclkccd0yb6PcQQNA0T0SuspST1tIOeMvjElKeh%2BhV5C7Q3M0RcoSaZS9MYMzIiH3a8e3btcZXAOzs6t89z6ME1WIJeXRcTxFPmdGdJGRa1sKYIb0j%2BBPH1iiFbbkeoOTIRhMpiQcOZFfkYF7EV2AgK8totNQV9QKOh%2BRXM%2B1and6ZRd20z7IhaaLXgqG3cD3jTLgporYwjZ2Lq%2BI5VzngKOno3HhQLxd8TMCqh2IjO76GDErvEBAi19P%2B1rpHJxrfruyPG24qsTqC2bb7GEu%2Birf7N2MRpHGFV8Z4ZLre2pvpBykPm17z3BhM5Zalfx1ID%2BWzmv2VVzlLGSXNGoV9xKrs6BQA%3D%3D";
+        window.__genspark_locale = "fr-FR";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDoA8KCWBcHWeZXUqaJa1mIh1GIUWDy0XSZB9ewZzOPHF4iNxPg74XhQalb+zEbdupafhkjzsZ+LklrgkGIEU8RHrndBHt1sdvzxQZyCHXXwYho0zyIPnUfDIu8le7J68Fpeex3PJvudspJS3QdyfTvJWDiOgPIv6Aovxyclkccd0yb6PcQQNA0T0SuspST1tIOeMvjElKeh+hV5C7Q3M0RcoSaZS9MYMzIiH3a8e3btcZXAOzs6t89z6ME1WIJeXRcTxFPmdGdJGRa1sKYIb0j+BPH1iiFbbkeoOTIRhMpiQcOZFfkYF7EV2AgK8totNQV9QKOh+RXM+1and6ZRd20z7IhaaLXgqG3cD3jTLgporYwjZ2Lq+I5VzngKOno3HhQLxd8TMCqh2IjO76GDErvEBAi19P+1rpHJxrfruyPG24qsTqC2bb7GEu+irf7N2MRpHGFV8Z4ZLre2pvpBykPm17z3BhM5Zalfx1ID+Wzmv2VVzlLGSXNGoV9xKrs6BQA==";
+    </script>
+    
+    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
+    
